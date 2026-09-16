@@ -30,8 +30,18 @@ export class TicketsService {
         }
     ];
 
-    findAll(){
-        return this.tickets;
+    findAll(status?: Ticket['status'], priority?: Ticket['priority']){
+        let tickets = this.tickets;
+
+        if(status) {
+            tickets = tickets.filter((ticket) => ticket.status === status);
+        }
+
+        if(priority) {
+            tickets = tickets.filter((ticket) => ticket.priority === priority);
+        }
+
+        return tickets;
     }
 
     findOne(id: number) {
